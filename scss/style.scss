@@ -1,0 +1,957 @@
+// Design tokens from Figma
+$bg: #262624;
+$card-bg: #474743;
+$text: #d9d9d9;
+$accent: #d7785b;
+$font-display: 'Bebas Neue', cursive;
+$font-body: 'Roboto Mono', monospace;
+
+// Reset
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: $font-body;
+  background-color: $bg;
+  color: $text;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+// Layout
+.layout {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 60px;
+    overflow: hidden;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  max-width: 771px;
+  width: 100%;
+  padding: 0 24px;
+
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 40px;
+  }
+}
+
+// Title
+.title {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  justify-content: center;
+  white-space: nowrap;
+  width: max-content;
+  max-width: none;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__logo {
+    width: 41px;
+    height: 39px;
+    flex-shrink: 0;
+    color: $accent;
+  }
+
+  &__text {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.6;
+    white-space: nowrap;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
+  }
+
+  &__badge {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.6;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+      height: 40px;
+      padding: 8px 16px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+      height: auto;
+      padding: 4px 12px;
+    }
+  }
+}
+
+// Badge states
+.state-on .title__badge {
+  background-color: $accent;
+  color: $bg;
+  border: 3px solid $accent;
+}
+
+.state-off .title__badge {
+  background-color: transparent;
+  color: $accent;
+  border: 3px solid $accent;
+}
+
+// Logo spin for State A
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.state-on .title__logo {
+  animation: spin 8s linear infinite;
+}
+
+.state-off .title__logo {
+  animation: none;
+}
+
+// Robot variants per state
+.state-on .clock__robot-eye--on {
+  display: block;
+}
+
+.state-on .clock__robot-feet--off {
+  display: none;
+}
+
+.state-off .clock__robot-eye--on {
+  display: none;
+}
+
+.state-off .clock__robot-feet--off {
+  display: block;
+}
+
+// Subtitle
+.subtitle {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
+}
+
+// Clock
+$flip-half: 0.72em;
+$flip-radius: 0.15em;
+$card-bg-bottom: #51514c;
+
+.clock {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  perspective: 600px;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
+
+  &__piece {
+    display: inline-block;
+    position: relative;
+  }
+
+  &__card {
+    display: block;
+    position: relative;
+    padding-bottom: $flip-half;
+    font-size: 160px;
+    line-height: 0.95;
+    font-family: $font-display;
+    font-style: normal;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      font-size: 80px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 108px;
+    }
+  }
+
+  // Shared styles for all card faces
+  &__card-top,
+  &__card-bottom,
+  &__card-back-bottom,
+  &__card-back::before,
+  &__card-back::after {
+    display: block;
+    height: $flip-half;
+    color: rgba(white, 0.8);
+    background: $card-bg;
+    padding: 0.23em 0.15em 0.4em;
+    border-radius: $flip-radius $flip-radius 0 0;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    width: 1.5em;
+    overflow: hidden;
+  }
+
+  // Bottom halves
+  &__card-bottom,
+  &__card-back-bottom {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border-top: solid 1px rgba(0, 0, 0, 0.4);
+    background: $card-bg-bottom;
+    border-radius: 0 0 $flip-radius $flip-radius;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  &__card-back-bottom {
+    z-index: 1;
+  }
+
+  // Shift text up to show bottom half
+  &__card-bottom::after,
+  &__card-back-bottom::after {
+    display: block;
+    margin-top: -$flip-half;
+  }
+
+  // Content via data attributes
+  &__card-back::before,
+  &__card-bottom::after,
+  &__card-back-bottom::after {
+    content: attr(data-value);
+  }
+
+  // Back layer (previous value, top half)
+  &__card-back {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+  }
+
+  &__card-back::before {
+    position: relative;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  // Flip animations triggered by .flip class on .clock__piece
+  &__piece.flip &__card-back::before {
+    z-index: 1;
+    animation: flipTop 0.3s cubic-bezier(.37, .01, .94, .35);
+    animation-fill-mode: both;
+    transform-origin: center bottom;
+  }
+
+  &__piece.flip &__card-bottom {
+    transform-origin: center top;
+    animation-fill-mode: both;
+    animation: flipBottom 0.6s cubic-bezier(.15, .45, .28, 1);
+  }
+
+  // Robot character (replaces digits at 00)
+  &__robot {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background: $card-bg-bottom;
+    border-radius: 32px;
+    padding: 16px;
+
+    @media (max-width: 768px) {
+      border-radius: 16px;
+      padding: 8px;
+    }
+  }
+
+  &__robot-svg {
+    width: 100%;
+    height: auto;
+    max-height: 80%;
+  }
+
+  // Show robot when piece has --robot class
+  &__piece--robot {
+    position: relative;
+  }
+
+  &__piece--robot &__card {
+    visibility: hidden;
+  }
+
+  &__piece--robot &__robot {
+    display: flex;
+  }
+
+  // ON state: show eyes, hide feet
+  &__robot-eye--on {
+    display: none;
+  }
+
+  &__robot-feet--off {
+    display: none;
+  }
+
+  &__divider {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      gap: 10px;
+    }
+  }
+
+  &__dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $text;
+
+    @media (max-width: 768px) {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+
+// Progress bar
+.bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+
+  @media (max-width: 480px) {
+    gap: 16px;
+  }
+
+  &__label {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
+  }
+
+  &__segments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+
+    @media (max-width: 480px) {
+      gap: 5px;
+    }
+  }
+
+  &__segment {
+    width: 20px;
+    height: 40px;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
+
+    &--active {
+      background-color: $accent;
+    }
+
+    &--inactive {
+      background-color: $text;
+    }
+
+    @media (max-width: 480px) {
+      width: 12px;
+      height: 24px;
+    }
+  }
+}
+
+// Timeline
+.timeline {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid rgba($text, 0.14);
+  border-radius: 20px;
+  background: rgba(white, 0.03);
+  box-shadow: inset 0 1px 0 rgba(white, 0.04);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  &__note,
+  &__loading {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba($text, 0.7);
+  }
+
+  &__note {
+    max-width: none;
+    text-align: right;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  &__list {
+    display: block;
+    max-height: 190px;
+    overflow-y: scroll;
+    padding-right: 8px;
+    scrollbar-width: auto;
+    scrollbar-color: rgba($accent, 0.7) transparent;
+    scrollbar-gutter: stable;
+  }
+
+  &__list::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &__list::-webkit-scrollbar-track {
+    background: rgba(white, 0.05);
+    border-radius: 999px;
+  }
+
+  &__list::-webkit-scrollbar-thumb {
+    background: rgba($accent, 0.78);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    border-radius: 999px;
+  }
+
+  &__list::-webkit-scrollbar-thumb:hover {
+    background: rgba($accent, 0.92);
+    background-clip: padding-box;
+  }
+
+  &__checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 10px;
+    align-items: start;
+    padding: 4px 8px 4px 0;
+    border-radius: 8px;
+  }
+
+  &__item--focus {
+    background: rgba($accent, 0.08);
+    box-shadow: inset 0 0 0 1px rgba($accent, 0.16);
+  }
+
+  &__text {
+    font-size: 16px;
+    line-height: 1.6;
+    word-break: keep-all;
+  }
+
+  &__main {
+    color: $text;
+  }
+
+  &__local {
+    color: rgba($text, 0.62);
+  }
+
+  &__check {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    border: 2px solid rgba($text, 0.35);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    color: $bg;
+    margin-top: 1px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  &__item--done &__check {
+    background: $accent;
+    border-color: $accent;
+  }
+
+  &__item--active &__check {
+    background: rgba($accent, 0.28);
+    border-color: $accent;
+  }
+
+  &__item--done &__text {
+    opacity: 0.58;
+    text-decoration: line-through;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: rgba($text, 0.45);
+  }
+
+  a {
+    color: inherit;
+    text-decoration-color: rgba($accent, 0.7);
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}
+
+// Bottom bar
+.bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    position: static;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+// Star
+.star {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px 8px 8px;
+    border: 1px solid white;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-family: $font-body;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: #E2B24C;
+      border: 1px solid transparent;
+      color: $bg;
+    }
+  }
+
+  &__icon {
+    font-size: 20px;
+  }
+
+  &__label {
+    font-size: 16px;
+  }
+
+  &__text {
+    font-size: 18px;
+    color: $text;
+
+    @media (max-width: 480px) {
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+
+  &__count {
+    font-size: 16px;
+    color: $text;
+    opacity: 0.6;
+
+    &:not(:empty)::before {
+      content: '\2022';
+      margin-right: 0.4rem;
+    }
+
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+}
+
+// Nana
+.nana {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &__text {
+    font-size: 18px;
+    color: $text;
+
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: $text;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #65A9EF;
+    }
+
+    svg {
+      width: 23px;
+      height: 23px;
+    }
+  }
+}
+
+// Flip keyframes
+@keyframes flipTop {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 2;
+  }
+  0%, 99% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flipBottom {
+  0%, 50% {
+    z-index: -1;
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  51% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+    z-index: 5;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .layout {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 96px;
+    padding: 48px 24px 32px;
+    overflow: visible;
+  }
+
+  .content {
+    width: 100%;
+    max-width: 342px;
+    padding: 0;
+    gap: 0;
+  }
+
+  .title {
+    margin-bottom: 64px;
+  }
+
+  .title__left {
+    gap: 12px;
+    max-width: 100%;
+  }
+
+  .title__logo {
+    width: 34px;
+    height: 32px;
+  }
+
+  .title__text {
+    font-size: 18px;
+  }
+
+  .subtitle {
+    margin-bottom: 24px;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .clock {
+    width: fit-content;
+    max-width: 100%;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto 64px;
+  }
+
+  .clock__card {
+    width: auto;
+    min-width: 0;
+    height: 160px;
+    padding: 0 9px;
+    font-size: 98px;
+    line-height: 1;
+    background: $card-bg-bottom;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .clock__card-top {
+    width: auto;
+    height: auto;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    color: white;
+    line-height: 0.82;
+    overflow: visible;
+  }
+
+  .clock__card-bottom,
+  .clock__card-back,
+  .clock__card-back-bottom {
+    display: none;
+  }
+
+  .clock__divider {
+    gap: 9px;
+  }
+
+  .clock__dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .clock__piece--robot .clock__card {
+    visibility: visible;
+  }
+
+  .clock__piece--robot .clock__robot {
+    display: none;
+  }
+
+  .bar {
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .bar__label {
+    font-size: 18px;
+  }
+
+  .bar__segments {
+    gap: 5px;
+    max-width: 100%;
+  }
+
+  .bar__segment {
+    width: 12px;
+    height: 24px;
+  }
+
+  .timeline {
+    width: 100%;
+    padding: 18px 16px;
+    border-radius: 18px;
+    margin-bottom: 64px;
+  }
+
+  .timeline__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .timeline__title {
+    font-size: 18px;
+  }
+
+  .timeline__note {
+    max-width: none;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 16px;
+  }
+
+  .timeline__list {
+    max-height: 260px;
+    padding-right: 6px;
+  }
+
+  .timeline__item {
+    grid-template-columns: 20px 1fr;
+    gap: 8px;
+  }
+
+  .timeline__check {
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+  }
+
+  .timeline__text,
+  .timeline__local {
+    font-size: 16px;
+  }
+
+  .bottom {
+    position: static;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: 342px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .star {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .star__button {
+    border-radius: 4px;
+    font-size: 18px;
+  }
+
+  .star__icon {
+    font-size: 18px;
+  }
+
+  .star__text,
+  .nana__text {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .nana {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}

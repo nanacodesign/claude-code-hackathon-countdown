@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Hackathon Countdown</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20260424j">
+</head>
+<body>
+
+  <div class="layout">
+    <div class="content">
+      <div class="title">
+        <div class="title__left">
+          <svg class="title__logo" width="41" height="39" viewBox="0 0 41 39" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Claude logo">
+            <path d="M20.5 0L23.2 13.6L33 4L26.4 16.8L40 19.5L26.4 22.2L33 35L23.2 25.9L20.5 39L17.8 25.9L8 35L14.6 22.2L1 19.5L14.6 16.8L8 4L17.8 13.6L20.5 0Z" fill="currentColor"/>
+          </svg>
+          <span class="title__text">Claude Code Hackathon Countdown</span>
+        </div>
+        <div class="title__badge" id="statusBadge">LIVE</div>
+      </div>
+
+      <p class="subtitle" id="subtitle">hackathon ends in</p>
+
+
+      <div class="clock" id="countdown">
+        <div class="clock__piece" id="hours">
+          <div class="clock__card">
+            <b class="clock__card-top">00</b>
+            <b class="clock__card-bottom" data-value="00"></b>
+            <b class="clock__card-back" data-value="00"></b>
+            <b class="clock__card-back-bottom" data-value="00"></b>
+          </div>
+          <div class="clock__robot">
+            <svg class="clock__robot-svg" viewBox="0 0 133 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.58 45.6V0H116.07V45.6H132.66V68.4H116.07V91.2H107.78V114H99.49V91.2H91.2V114H82.91V91.2H49.75V114H41.45V91.2H33.16V114H24.87V91.2H16.58V68.4H0V45.6H16.58Z" fill="#D7785B"/>
+              <rect class="clock__robot-eye clock__robot-eye--on" x="32" y="24" width="22" height="8" fill="black"/>
+              <rect class="clock__robot-eye clock__robot-eye--on" x="93" y="24" width="22" height="8" fill="black"/>
+              <g class="clock__robot-feet clock__robot-feet--off">
+                <rect x="25" y="57" width="30" height="4" fill="black"/>
+                <rect x="28" y="57" width="4" height="11" fill="black"/>
+                <rect x="35" y="57" width="4" height="11" fill="black"/>
+                <rect x="42" y="57" width="4" height="11" fill="black"/>
+                <rect x="49" y="57" width="4" height="11" fill="black"/>
+                <rect x="77" y="57" width="30" height="4" fill="black"/>
+                <rect x="80" y="57" width="4" height="11" fill="black"/>
+                <rect x="87" y="57" width="4" height="11" fill="black"/>
+                <rect x="94" y="57" width="4" height="11" fill="black"/>
+                <rect x="101" y="57" width="4" height="11" fill="black"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="clock__divider">
+          <span class="clock__dot"></span>
+          <span class="clock__dot"></span>
+        </div>
+        <div class="clock__piece" id="minutes">
+          <div class="clock__card">
+            <b class="clock__card-top">00</b>
+            <b class="clock__card-bottom" data-value="00"></b>
+            <b class="clock__card-back" data-value="00"></b>
+            <b class="clock__card-back-bottom" data-value="00"></b>
+          </div>
+          <div class="clock__robot">
+            <svg class="clock__robot-svg" viewBox="0 0 133 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.58 45.6V0H116.07V45.6H132.66V68.4H116.07V91.2H107.78V114H99.49V91.2H91.2V114H82.91V91.2H49.75V114H41.45V91.2H33.16V114H24.87V91.2H16.58V68.4H0V45.6H16.58Z" fill="#D7785B"/>
+              <rect class="clock__robot-eye clock__robot-eye--on" x="32" y="24" width="22" height="8" fill="black"/>
+              <rect class="clock__robot-eye clock__robot-eye--on" x="93" y="24" width="22" height="8" fill="black"/>
+              <g class="clock__robot-feet clock__robot-feet--off">
+                <rect x="25" y="57" width="30" height="4" fill="black"/>
+                <rect x="28" y="57" width="4" height="11" fill="black"/>
+                <rect x="35" y="57" width="4" height="11" fill="black"/>
+                <rect x="42" y="57" width="4" height="11" fill="black"/>
+                <rect x="49" y="57" width="4" height="11" fill="black"/>
+                <rect x="77" y="57" width="30" height="4" fill="black"/>
+                <rect x="80" y="57" width="4" height="11" fill="black"/>
+                <rect x="87" y="57" width="4" height="11" fill="black"/>
+                <rect x="94" y="57" width="4" height="11" fill="black"/>
+                <rect x="101" y="57" width="4" height="11" fill="black"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="clock__divider">
+          <span class="clock__dot"></span>
+          <span class="clock__dot"></span>
+        </div>
+        <div class="clock__piece" id="seconds">
+          <div class="clock__card">
+            <b class="clock__card-top">00</b>
+            <b class="clock__card-bottom" data-value="00"></b>
+            <b class="clock__card-back" data-value="00"></b>
+            <b class="clock__card-back-bottom" data-value="00"></b>
+          </div>
+          <div class="clock__robot">
+            <svg class="clock__robot-svg" viewBox="0 0 133 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.58 45.6V0H116.07V45.6H132.66V68.4H116.07V91.2H107.78V114H99.49V91.2H91.2V114H82.91V91.2H49.75V114H41.45V91.2H33.16V114H24.87V91.2H16.58V68.4H0V45.6H16.58Z" fill="#D7785B"/>
+              <rect class="clock__robot-eye clock__robot-eye--on" x="32" y="24" width="22" height="8" fill="black"/>
+              <rect class="clock__robot-eye clock__robot-eye--on" x="93" y="24" width="22" height="8" fill="black"/>
+              <g class="clock__robot-feet clock__robot-feet--off">
+                <rect x="25" y="57" width="30" height="4" fill="black"/>
+                <rect x="28" y="57" width="4" height="11" fill="black"/>
+                <rect x="35" y="57" width="4" height="11" fill="black"/>
+                <rect x="42" y="57" width="4" height="11" fill="black"/>
+                <rect x="49" y="57" width="4" height="11" fill="black"/>
+                <rect x="77" y="57" width="30" height="4" fill="black"/>
+                <rect x="80" y="57" width="4" height="11" fill="black"/>
+                <rect x="87" y="57" width="4" height="11" fill="black"/>
+                <rect x="94" y="57" width="4" height="11" fill="black"/>
+                <rect x="101" y="57" width="4" height="11" fill="black"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bar" id="progressBar">
+        <p class="bar__label" id="daysLeft">2 days left</p>
+        <div class="bar__segments" id="barSegments"></div>
+      </div>
+
+      <section class="timeline" aria-labelledby="timelineTitle">
+        <div class="timeline__header">
+          <h2 class="timeline__title" id="timelineTitle">Timeline Checklist</h2>
+          <p class="timeline__note">past items auto-check and cross out</p>
+        </div>
+        <div class="timeline__list" id="timelineList">
+          <p class="timeline__loading">Loading checklist...</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="bottom">
+      <div class="star">
+        <a class="star__button" href="https://github.com/nanacodesign/claude-code-hackathon-countdown" target="_blank" rel="noopener">
+          <span class="star__icon material-symbols-outlined">star</span>
+          <span class="star__label">Star</span>
+        </a>
+        <span class="star__text">cheer this hackathon build on</span>
+        <span class="star__count" id="starCount"></span>
+      </div>
+      <div class="nana">
+        <span class="nana__text">made by nana · CC BY 4.0</span>
+        <a class="nana__social" href="https://www.linkedin.com/in/nanacodesign/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="23" height="23" viewBox="0 0 23 23" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.598 19.598h-3.408v-5.337c0-1.273-.023-2.91-1.773-2.91-1.775 0-2.046 1.386-2.046 2.818v5.43H8.963V8.622h3.272v1.5h.045c.328-.56.8-1.02 1.37-1.333a3.77 3.77 0 0 1 1.858-.44c3.454 0 4.091 2.272 4.091 5.228v5.02ZM5.117 7.122a1.978 1.978 0 1 1 0-3.957 1.978 1.978 0 0 1 0 3.957Zm1.704 12.476H3.41V8.622h3.411v10.976ZM21.297.002H1.697A1.69 1.69 0 0 0 0 1.66v19.68a1.69 1.69 0 0 0 1.697 1.66h19.6a1.69 1.69 0 0 0 1.703-1.66V1.66A1.69 1.69 0 0 0 21.297.002Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js?v=20260424j"></script>
+</body>
+</html>
