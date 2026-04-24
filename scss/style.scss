@@ -488,6 +488,7 @@ $card-bg-bottom: #51514c;
     scrollbar-width: auto;
     scrollbar-color: rgba($accent, 0.7) transparent;
     scrollbar-gutter: stable;
+    font-weight: 600;
   }
 
   &__list::-webkit-scrollbar {

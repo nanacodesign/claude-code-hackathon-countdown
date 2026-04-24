@@ -454,6 +454,7 @@ body {
   scrollbar-width: auto;
   scrollbar-color: rgba(215, 120, 91, 0.7) transparent;
   scrollbar-gutter: stable;
+  font-weight: 600;
 }
 .timeline__list::-webkit-scrollbar {
   width: 10px;
